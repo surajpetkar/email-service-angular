@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="card">
+        <form class="example-form" (ngSubmit)="sendMail()">
+            <h2>Compose Email</h2>
+            <mat-form-field class="field">
+              <mat-label>To</mat-label>
+              <input type="email" name="to" [(ngModel)]="data.to" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+              @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+                <mat-error>Please enter a valid email address</mat-error>
+              }
+              @if (emailFormControl.hasError('required')) {
+                <mat-error>Email is <strong>required</strong></mat-error>
+              }
+            </mat-form-field>
+            <mat-form-field class="field">
+                <mat-label>Subject</mat-label>
+                <input type="text" name="subject" [(ngModel)]="data.subject" matInput [formControl]="subjectFormControl" placeholder="Ex. Rescheduling of meeting">
+                @if (subjectFormControl.hasError('text') && !subjectFormControl.hasError('required')) {
+                  <mat-error>Field should not be empty</mat-error>
+                }
+                @if (subjectFormControl.hasError('required')) {
+                  <mat-error>Subject is <strong>required</strong></mat-error>
+                }
+              </mat-form-field>
+            <mat-form-field class="field">
+                <mat-label>Body</mat-label>
+                <textarea name="body" [(ngModel)]="data.message" matInput [formControl]="bodyFormControl" placeholder="Ex. It makes me feel..."></textarea>
+                @if (bodyFormControl.hasError('text') && !bodyFormControl.hasError('required')) {
+                    <mat-error>Field should not be empty</mat-error>
+                }
+                @if (bodyFormControl.hasError('required')) {
+                    <mat-error>Body is <strong>required</strong></mat-error>
+                }
+            </mat-form-field>
+            <div class="btn-div">
+                <button type="submit" class="btn" mat-raised-button>Send</button>
+                <button type="reset" class="btn" mat-raised-button>Reset</button>
+            </div>
+        </form>
+    </div>
+</div>
